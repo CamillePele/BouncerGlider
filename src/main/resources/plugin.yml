@@ -1,7 +1,3 @@
 name: Bumper
 version: ${project.version}
-main: xyz.kams.bumper.Bumper
-commands:
-  test:
-    description: Your description
-    usage: /<command>
+main: xyz.kams.BouncerGlider.Main

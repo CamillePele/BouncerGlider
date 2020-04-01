@@ -1,22 +1,19 @@
-package xyz.kams.bumper.utils;
+package xyz.kams.BouncerGlider.glider;
 
 import org.bukkit.Effect;
-import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.block.BlockFace;
 import org.bukkit.entity.*;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
-import xyz.kams.bumper.Bumper;
+import xyz.kams.BouncerGlider.Main;
 
-import java.util.HashMap;
 import java.util.Map;
 
 public class GliderTask extends BukkitRunnable {
 
-    private static Bumper plugin;
+    private static Main plugin;
 
-    public GliderTask(Bumper plugin) {
+    public GliderTask(Main plugin) {
         this.plugin = plugin;
     }
 
@@ -31,9 +28,9 @@ public class GliderTask extends BukkitRunnable {
                 Chicken chicken = (Chicken) gliderEntitys.get("chicken");
                 Vector vector;
                 if (chicken.getLocation().getBlock().getType()==Material.STATIONARY_WATER) {
-                    vector = player.getLocation().getDirection().multiply(0.25).setY(0);
+                    vector = player.getLocation().getDirection().multiply(plugin.getGliderPowerFront()).setY(0);
                 } else {
-                    vector = player.getLocation().getDirection().multiply(0.25).setY(-0.1);
+                    vector = player.getLocation().getDirection().multiply(plugin.getGliderPowerFront()).setY(plugin.getGliderPowerBottom());
                 }
                 chicken.setVelocity(vector);
                 chicken.getLocation().setDirection(player.getLocation().getDirection());
@@ -49,7 +46,7 @@ public class GliderTask extends BukkitRunnable {
                 ArmorStand center = (ArmorStand) gliderEntitys.get("center");
                 center.teleport(player.getLocation());
 
-                player.getLocation().getWorld().playEffect(player.getLocation().add(0, 1, 0), Effect.SMOKE, 20);
+                //player.getLocation().getWorld().playEffect(player.getLocation().add(0, 1, 0), Effect.SMOKE, 20);
 
                 if (chicken.isOnGround()) {
                     GliderManage.removeGlider(player);

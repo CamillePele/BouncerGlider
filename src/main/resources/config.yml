@@ -1,0 +1,9 @@
+settings:
+  bouncer:
+    Power_Front: 1.5
+    Power_Height: 1.5
+    Plate_Block: IRON_PLATE
+    Bottom_Block: REDSTONE_BLOCK
+  glider:
+    Power_Front: 0.25
+    Power_Bottom: 0.1

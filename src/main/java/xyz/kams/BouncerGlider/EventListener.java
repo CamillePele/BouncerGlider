@@ -1,21 +1,23 @@
-package xyz.kams.bumper;
+package xyz.kams.BouncerGlider;
 
 import org.bukkit.Material;
 import org.bukkit.entity.Chicken;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.player.PlayerToggleSneakEvent;
-import xyz.kams.bumper.utils.GliderManage;
+import xyz.kams.BouncerGlider.bouncer.BouncerManager;
+import xyz.kams.BouncerGlider.glider.GliderManage;
 
 import java.util.Map;
 
 public class EventListener implements Listener {
 
-    private static Bumper plugin;
+    private static Main plugin;
 
-    public EventListener(Bumper plugin) {
+    public EventListener(Main plugin) {
         this.plugin = plugin;
     }
 
@@ -40,6 +42,14 @@ public class EventListener implements Listener {
         Player player = event.getPlayer();
         if (plugin.getGliding().containsKey(player)) {
             GliderManage.removeGlider(player);
+        }
+    }
+
+    @EventHandler
+    public void onJump(PlayerMoveEvent event) {
+        Player player = event.getPlayer();
+        if (player.getLocation().getBlock().getType() == plugin.getBouncerPlate()  && player.getLocation().subtract(0.0, 1.0, 0.0).getBlock().getType() == plugin.getBouncerBlock()) {
+            BouncerManager.bounce(player);
         }
     }
 

@@ -1,23 +1,22 @@
-package xyz.kams.bumper.utils;
+package xyz.kams.BouncerGlider.glider;
 
 import org.bukkit.DyeColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.*;
-import org.bukkit.event.vehicle.VehicleExitEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.BannerMeta;
 import org.bukkit.util.EulerAngle;
-import xyz.kams.bumper.Bumper;
+import xyz.kams.BouncerGlider.Main;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class GliderManage {
 
-    private static Bumper plugin;
+    private static Main plugin;
 
-    public GliderManage(Bumper plugin) {
+    public GliderManage(Main plugin) {
         this.plugin = plugin;
     }
 
