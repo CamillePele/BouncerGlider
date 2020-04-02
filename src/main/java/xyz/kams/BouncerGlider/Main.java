@@ -18,26 +18,10 @@ public final class Main extends JavaPlugin {
     HashMap<Player, Map<String, Object>> Gliding = new HashMap<Player, Map<String, Object>>();
     ArrayList<Player> Bounced = new ArrayList<Player>();
 
-    Double bouncerPowerFront;
-    Double bouncerPowerHeight;
-    Material bouncerPlate;
-    Material bouncerBlock;
-
-    Double gliderPowerFront;
-    Double gliderPowerBottom;
-
     @Override
     public void onEnable() {
         getConfig().options().copyDefaults(true);
         saveConfig();
-
-        bouncerPowerFront = this.getConfig().getDouble("settings.bouncer.Power_Front");
-        bouncerPowerHeight = this.getConfig().getDouble("settings.bouncer.Power_Height");
-        bouncerPlate = Material.getMaterial(getConfig().getString("settings.bouncer.Plate_Block").toUpperCase());
-        bouncerBlock = Material.getMaterial(getConfig().getString("settings.bouncer.Bottom_Block").toUpperCase());
-
-        gliderPowerFront = this.getConfig().getDouble("settings.glider.Power_Front");
-        gliderPowerBottom = -1 * this.getConfig().getDouble("settings.glider.Power_Bottom");
 
         Gliding = new HashMap<Player, Map<String, Object>>();
         Bounced = new ArrayList<Player>();
@@ -64,27 +48,4 @@ public final class Main extends JavaPlugin {
         return Bounced;
     }
 
-    public Double getGliderPowerBottom() {
-        return gliderPowerBottom;
-    }
-
-    public Double getGliderPowerFront() {
-        return gliderPowerFront;
-    }
-
-    public Material getBouncerBlock() {
-        return bouncerBlock;
-    }
-
-    public Material getBouncerPlate() {
-        return bouncerPlate;
-    }
-
-    public Double getBouncerPowerHeight() {
-        return bouncerPowerHeight;
-    }
-
-    public Double getBouncerPowerFront() {
-        return bouncerPowerFront;
-    }
 }

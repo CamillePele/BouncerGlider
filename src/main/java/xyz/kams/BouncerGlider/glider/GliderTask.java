@@ -28,9 +28,9 @@ public class GliderTask extends BukkitRunnable {
                 Chicken chicken = (Chicken) gliderEntitys.get("chicken");
                 Vector vector;
                 if (chicken.getLocation().getBlock().getType()==Material.STATIONARY_WATER) {
-                    vector = player.getLocation().getDirection().multiply(plugin.getGliderPowerFront()).setY(0);
+                    vector = player.getLocation().getDirection().multiply(plugin.getConfig().getDouble("settings.glider.Power_Front")).setY(0);
                 } else {
-                    vector = player.getLocation().getDirection().multiply(plugin.getGliderPowerFront()).setY(plugin.getGliderPowerBottom());
+                    vector = player.getLocation().getDirection().multiply(plugin.getConfig().getDouble("settings.glider.Power_Front")).setY(-1 * plugin.getConfig().getDouble("settings.glider.Power_Bottom"));
                 }
                 chicken.setVelocity(vector);
                 chicken.getLocation().setDirection(player.getLocation().getDirection());

@@ -48,7 +48,7 @@ public class EventListener implements Listener {
     @EventHandler
     public void onJump(PlayerMoveEvent event) {
         Player player = event.getPlayer();
-        if (player.getLocation().getBlock().getType() == plugin.getBouncerPlate()  && player.getLocation().subtract(0.0, 1.0, 0.0).getBlock().getType() == plugin.getBouncerBlock()) {
+        if (player.getLocation().getBlock().getType() == Material.getMaterial(plugin.getConfig().getString("settings.bouncer.Plate_Block").toUpperCase())  && player.getLocation().subtract(0.0, 1.0, 0.0).getBlock().getType() == Material.getMaterial(plugin.getConfig().getString("settings.bouncer.Bottom_Block").toUpperCase())) {
             BouncerManager.bounce(player);
         }
     }

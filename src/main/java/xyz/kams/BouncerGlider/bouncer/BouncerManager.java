@@ -15,7 +15,7 @@ public class BouncerManager {
 
     public static void bounce(Player player) {
         if (plugin.getBounced().contains(player)) return;
-        Vector vector = player.getLocation().getDirection().multiply(plugin.getBouncerPowerFront()).setY(plugin.getBouncerPowerHeight());
+        Vector vector = player.getLocation().getDirection().multiply(plugin.getConfig().getDouble("settings.bouncer.Power_Front")).setY(plugin.getConfig().getDouble("settings.bouncer.Power_Height"));
         player.setVelocity(vector);
         player.playSound(player.getLocation(), Sound.BLOCK_PISTON_EXTEND, 1.0f, 1.0f);
         plugin.getBounced().add(player);
