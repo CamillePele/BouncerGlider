@@ -24,15 +24,14 @@ public class GliderTask extends BukkitRunnable {
         for (Map.Entry hm : plugin.getGliding().entrySet()) {
             //System.out.println("Key: "+hm.getKey() + " & Value: " + hm.getValue());
             Player player = (Player) hm.getKey();
-            if(player.getVehicle() instanceof Chicken) {
+            Map<String, Object> gliderValues = (Map<String, Object>) hm.getValue();
+            Chicken chicken = (Chicken) gliderValues.get("chicken");
+            if(player.getVehicle() == chicken) {
 
                 if (player.getItemInHand().getType() == Material.FIREWORK) {
                     player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText("Left click to boost"));
                 }
 
-                Map<String, Object> gliderValues = (Map<String, Object>) hm.getValue();
-
-                Chicken chicken = (Chicken) gliderValues.get("chicken");
                 Vector vector;
                 if (chicken.getLocation().getBlock().getType()==Material.STATIONARY_WATER) {
                     vector = player.getLocation().getDirection().multiply(plugin.getConfig().getDouble("settings.glider.Power_Front")).setY(0);
@@ -66,6 +65,9 @@ public class GliderTask extends BukkitRunnable {
                 if (chicken.isOnGround()) {
                     GliderManage.removeGlider(player);
                 }
+            }
+            else {
+                chicken.addPassenger(player);
             }
         }
     }
