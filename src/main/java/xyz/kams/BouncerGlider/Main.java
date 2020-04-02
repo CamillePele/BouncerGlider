@@ -1,9 +1,12 @@
 package xyz.kams.BouncerGlider;
 
 import org.bukkit.Material;
+import org.bukkit.entity.ArmorStand;
+import org.bukkit.entity.Chicken;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitTask;
+import org.bukkit.util.Vector;
 import xyz.kams.BouncerGlider.bouncer.BouncerManager;
 import xyz.kams.BouncerGlider.bouncer.BouncerTask;
 import xyz.kams.BouncerGlider.glider.GliderManage;
@@ -15,8 +18,8 @@ import java.util.Map;
 
 public final class Main extends JavaPlugin {
 
-    HashMap<Player, Map<String, Object>> Gliding = new HashMap<Player, Map<String, Object>>();
-    ArrayList<Player> Bounced = new ArrayList<Player>();
+    HashMap<Player, Map<String, Object>> Gliding = new HashMap();
+    ArrayList<Player> Bounced = new ArrayList();
 
     @Override
     public void onEnable() {
@@ -37,7 +40,10 @@ public final class Main extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        // Plugin shutdown logic
+        for (Map.Entry hm : this.getGliding().entrySet()) {
+            Player player = (Player) hm.getKey();
+            GliderManage.removeGlider(player);
+        }
     }
 
     public HashMap<Player, Map<String, Object>> getGliding() {
