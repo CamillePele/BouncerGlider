@@ -42,7 +42,6 @@ public class GliderTask extends BukkitRunnable {
                     vector = player.getLocation().getDirection().multiply(1.5+5*Math.pow(Math.sin(x), 2)).setY(0); //Use Sinus Function to do smooth speed
 
                     gliderValues.replace("boost", (Integer) gliderValues.get("boost") - 1);
-                    System.out.println(gliderValues.get("boost"));
                 }
                 else {
                     vector = player.getLocation().getDirection().multiply(plugin.getConfig().getDouble("settings.glider.Power_Front")).setY(-1 * plugin.getConfig().getDouble("settings.glider.Power_Bottom"));
